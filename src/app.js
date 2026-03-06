@@ -13,9 +13,7 @@ app.use(cors());
 
 // routes middleware
 app.use('/api/v1/picklist', picklistRoutes);
-console.log(process.env.PASSWORD);
-console.log(process.env.EMAIL);
-
 app.use(globalErrorHandler);
 
 export { app };
+

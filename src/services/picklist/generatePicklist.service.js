@@ -42,6 +42,7 @@ const generatePicklist = async (channel) => {
 
 const browser = await chromium.launch({
   headless: true,
+  executablePath: '/usr/bin/google-chrome-stable',
   args: [
     "--no-sandbox",
     "--disable-setuid-sandbox",
@@ -306,4 +307,5 @@ const browser = await chromium.launch({
 };
 
 export { generatePicklist };
+
 

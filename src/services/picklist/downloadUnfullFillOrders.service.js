@@ -16,7 +16,15 @@ const generateFullFillFile = async (channel, user) => {
     throw new ApiError(400, 'User is required');
   }
 
-  const browser = await chromium.launch({ headless: false });
+ 
+  const browser = await chromium.launch({
+  headless: true,
+  args: [
+    "--no-sandbox",
+    "--disable-setuid-sandbox",
+    "--disable-dev-shm-usage"
+  ]
+});
   const context = await browser.newContext();
   const page = await context.newPage();
   const email = process.env.EMAIL;
@@ -101,3 +109,4 @@ const generateFullFillFile = async (channel, user) => {
 };
 
 export { generateFullFillFile };
+

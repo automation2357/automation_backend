@@ -40,7 +40,14 @@ const generatePicklist = async (channel) => {
     throw new ApiError(400, 'channel is required');
   }
 
-  const browser = await chromium.launch({ headless: false });
+const browser = await chromium.launch({
+  headless: true,
+  args: [
+    "--no-sandbox",
+    "--disable-setuid-sandbox",
+    "--disable-dev-shm-usage"
+  ]
+});
   const context = await browser.newContext();
   const page = await context.newPage();
   const email = process.env.EMAIL;
@@ -299,3 +306,4 @@ const generatePicklist = async (channel) => {
 };
 
 export { generatePicklist };
+
